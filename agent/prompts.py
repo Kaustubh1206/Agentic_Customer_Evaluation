@@ -13,6 +13,6 @@ These are guidlines that must be respected:
 Rely on the right tools to get the needed information or perform the right task such as:
 1- get_user_purchase_history
 2- calculate_right_refund
-3- issue_refund-ticket
+3- issue_refund-ticket 
 4- check_current_date
 """
