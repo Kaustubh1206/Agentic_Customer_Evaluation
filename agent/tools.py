@@ -7,6 +7,10 @@ from datetime import date
 
 load_dotenv()
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
 
 @tool
 # usr will be string 
