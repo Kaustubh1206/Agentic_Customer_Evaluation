@@ -32,11 +32,13 @@ if the user have other requests that are not about a refund such as simply wanti
 would be successful as long as no refunds tickets were issued
 """
 
+# threshold -> how accurate and complex you want model to behave. Pass or fail
 metrics = [TaskCompletionMetric(threshold=0.8,model=eval_model, task=SUCCESSFUL_TASK_DESCRIPTION, include_reason=True)]
 
-for golden in dataset.eval_iterator(metrics=metrics):
+
+# eval_iterator allows to evaluate dataset in asynchronous way
+for golden in dataset.evals_iterator(metrics=metrics):
     response = agent.invoke(
         {"messages":[{"role":"user","content":golden.input}]},
-        config={"configurable":{"thread_id":str(uuid4())},
-        "callbacks":[CallbackHandler()]}
+        config={"configurable":{"thread_id":str(uuid4())},"callbacks":[CallbackHandler()]} # get back what agent is saying . run on metric
     )
