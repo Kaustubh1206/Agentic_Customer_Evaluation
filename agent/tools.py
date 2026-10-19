@@ -26,7 +26,13 @@ def get_user_purchase_history(user: str) -> dict:
 # Or How much refund they will get ?
 @tool
 def calculate_right_refund(user:str, items:list[PurchaseItem])->str:
-    """This tool takes a list of items to be returned and the username and will return how much the return worth"""
+    """    Check the requested purchased items against the
+    30-day refund policy.
+
+    Return the eligible refund total and an eligibility
+    decision for each item.
+
+    Call this before issuing any refund ticket."""
     logging.info(f"Using calculate_right_refund tool to get user's: {user} refund")
     if users_data.get(user):
         total_refund = 0
@@ -50,11 +56,12 @@ def issue_refund_ticket(user:str ,refund_amount: int)->str:
 
 
 @tool 
-def get_today_date(user:str) ->str:
+def get_today_date() ->str:
     """
-    This will return todays date
+    Return todays date in YYYY-MM-DD Format
+    This tool takes no arguments 
     """
-    logging.info(f"Using the get_today_date for {user}")
+    logging.info(f"Using the date tool")
     return date.today()
 
 book=PurchaseItem(name="book")
